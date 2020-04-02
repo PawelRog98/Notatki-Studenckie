@@ -1,0 +1,20 @@
+﻿<Window x:Class="Notes.Edycja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notes"
+        mc:Ignorable="d"
+        Title="Edycja" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Viewbox Stretch="Fill">
+        <Grid Background="#fdff87" Height="420" Width="794">
+            <Button Style="{StaticResource Przycisk}" Content="ANULUJ" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="252" Height="70" Click="Button_Click" FontSize="22"/>
+            <Button Style="{StaticResource Przycisk}" x:Name="ZapisNotatkiEdycja" Content="ZAPISZ" HorizontalAlignment="Left" Margin="532,340,0,0" VerticalAlignment="Top" Width="252" Height="70" Click="Button_Click_1" FontSize="22"/>
+            <TextBox Style="{StaticResource Textbox}" Tag="Brak treści!" x:Name="WpisanaNazwaEdycja" HorizontalAlignment="Left" Height="289" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" TextChanged="Notka2_TextChanged" FontSize="22"/>
+            <Label x:Name="WyswietlanieSemestr" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="36" Width="386" FontSize="22"/>
+            <Label x:Name="WyswietlaniePrzedmiot" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" Margin="401,10,0,0" VerticalAlignment="Top" Height="36" Width="386" FontSize="22"/>
+
+        </Grid>
+    </Viewbox>
+</Window>

@@ -1,0 +1,262 @@
+﻿<Application x:Class="Notes.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Notes"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="CustomFont">
+            <Setter Property="TextElement.FontFamily"
+                    Value="Fonts/caveat-bold.ttf #caveat"/>
+        </Style>
+        <Style TargetType="Button" x:Key="Przycisk">
+            <Setter Property="Background" Value="#e5e354"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="TextElement.FontFamily"
+                    Value="Fonts/caveat-bold.ttf #caveat"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="15"
+                        BorderThickness="3"
+                        Padding="5"
+                        BorderBrush="#aaa964">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#fffd87"/>
+                    <Setter Property="Foreground" Value="#aaa964"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#59583a"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="Tekst">
+            <Setter Property="Background" Value="#e5e354"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="TextElement.FontFamily"
+                    Value="Fonts/caveat-bold.ttf #caveat"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="15"
+                        BorderThickness="3"
+                        Padding="5"
+                        BorderBrush="#aaa964">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="Textbox">
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextElement.FontFamily"
+                    Value="Fonts/caveat-bold.ttf #caveat"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="250"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border x:Name="border"
+                        CornerRadius="15"
+                        BorderBrush="#FFAAA964"
+                        BorderThickness="3"
+                        Background="#e5e354"
+>
+                                <ScrollViewer x:Name="PART_ContentHost"
+                            Focusable="false"
+                            HorizontalScrollBarVisibility="Hidden"
+                            VerticalScrollBarVisibility="Hidden"/>
+                            </Border>
+                            <Label x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Stretch"
+                               Visibility="Collapsed" Foreground="#9a9b69"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFE0E0CA"/>
+
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFAAA964"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="StylPrzycisk" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border 
+                        Background="#e5e354" 
+                        x:Name="border" 
+                        CornerRadius="15,15,15,15" 
+                        BorderThickness="3,3,3,3"
+                        BorderBrush="#aaa964">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#fdffc6"/>
+                                <Setter Property="Background" TargetName="border" Value="#eff28e"/>
+                            </Trigger>
+                            </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style  x:Key="ComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="TextElement.FontFamily"
+                    Value="Fonts/caveat-bold.ttf #caveat"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <ToggleButton Grid.Column="1" Margin="0"
+                            Height="{TemplateBinding Height}"
+                            Style="{StaticResource StylPrzycisk}"
+                            Focusable="False"
+                            IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press">
+                                <Path Grid.Column="1"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Data="M 0 0 L 4 4 L 8 0 Z"
+                                  Fill="#aaa964" />
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="10,15,100,15"/>
+                            <Popup Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide">
+                                <Grid Name="DropDown"
+                                SnapsToDevicePixels="True"                
+                                MinWidth="{TemplateBinding ActualWidth}"
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+                                    x:Name="DropDownBorder"
+                                    BorderThickness="3"
+                                    CornerRadius="15"
+                                    Background="#e5e354"
+                                    BorderBrush="#aaa964"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ListBoxItem" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            <Setter Property="TextElement.FontFamily"
+                    Value="Fonts/caveat-bold.ttf #caveat"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid x:Name="grid" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Najechane"
+                            Background="#ffe69b"
+                            BorderBrush="#b5a26c"
+                            BorderThickness="3"
+                            CornerRadius="12"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed"
+                            Margin="-10">
+                            </Border>
+                            <Border x:Name="Wybrane"
+                            Background="#ffc805"
+                            BorderBrush="#aa8603"
+                            BorderThickness="3"
+                            CornerRadius="-7"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed"
+                            Margin="-7">
+                            </Border>
+                            <ContentPresenter></ContentPresenter>
+                            <Border Height="3"
+                            BorderBrush="#99D7D7D7"
+                            BorderThickness="0,0,0,0"
+                            Grid.Row="1">
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Najechane"
+                                Property="Visibility"
+                                Value="Visible">
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Wybrane"
+                                Property="Visibility"
+                                Value="Visible">
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ListBox" TargetType="{x:Type ListBox}">
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ResourceKey=ListBoxItem}"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border BorderBrush="#FFAAA964" Background="#e5e354" BorderThickness="3" CornerRadius="12">
+                            <ScrollViewer Margin="5">
+                                <ItemsPresenter Margin="5"></ItemsPresenter>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
