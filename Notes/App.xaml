@@ -77,7 +77,6 @@
                         BorderBrush="#FFAAA964"
                         BorderThickness="3"
                         Background="#e5e354"
->
                                 <ScrollViewer x:Name="PART_ContentHost"
                             Focusable="false"
                             HorizontalScrollBarVisibility="Hidden"
